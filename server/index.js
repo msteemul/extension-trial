@@ -3,7 +3,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const {MONGOURI, PORT} = require('./keys/keys')
-require('./models/user')
+const router = express.Router();
+const Signup = require('./api/auth/signup')
+const cors = require('cors');
+
 
 try{
     mongoose.connect(MONGOURI, {
@@ -22,7 +25,19 @@ try{
 }
 
 app.use(express.json());
+require('./models/user')
+// app.use(require('./routes/route'))
 
+router.get('/', (req, res) => {
+    res.send("Hello user"); 
+})
+
+router.post('/signup', Signup)
+
+// router.post('/signup', Signup)
+app.use(cors());
+app.use('/', router);
+app.use('/signup', router)
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

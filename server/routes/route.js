@@ -3,6 +3,10 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model("User");
 
-router.post('/signup', (req, res) =>{
-    
+const Signup = require('../api/auth/signup')
+
+router.get('/', (req, res) => {
+    res.send("Hello user");
 })
+
+router.post('/signup', Signup)
