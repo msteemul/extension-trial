@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import logo from './logo.svg'
+import {MemoryRouter, Routes, Route} from "react-router-dom";
 import Login from './components/login/Login'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App h-full">
-      <Login />
-    </div>
+    <>
+    <MemoryRouter>
+      <Routes>
+        <Route path='/' element={<Login />} />
+
+      </Routes>
+
+    </MemoryRouter>
+    </>
   )
 }
 
