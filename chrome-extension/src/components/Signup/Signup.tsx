@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import {InputField, Button} from '../global/index';
 import {SignupFormProps} from '../../types'
 import {signup} from '../../services/signup'
+import { useState } from 'react';
 
 const Signup:React.FC = () => {
+    const [error, setError] = useState<string>('')
     const {
         register,
         handleSubmit,
@@ -15,8 +17,12 @@ const Signup:React.FC = () => {
     const onSubmit = async ({ name,email, password }: SignupFormProps) => {
         console.log(name ,email, password)
         try{
-            const user = await signup({ name, email, password })
+            const {user, error} = await signup({ name, email, password, error: '' })
             console.log('user', user)
+            console.log('error', error)
+            if(error){
+                setError(error.error)
+            }
 
         }catch(e){
             console.log(e)
@@ -37,18 +43,30 @@ const Signup:React.FC = () => {
                 placeholder='name' 
                 {...register('name', {required: true})}
                 />
+                 {errors.name?.type === "required" && (
+          <span className="block mt-2 text-xs text-red-500">Name is required</span>
+        )}
          <InputField 
                 label='email'  
                 type='email' 
                 placeholder='email' 
                 {...register('email', {required: true})}
                 />
+                {errors.email?.type === "required" && (
+          <span className="block mt-2 text-xs text-red-500">Email is required</span>
+        )}
                 <InputField 
                 label='password'
                   type='password'
                     placeholder='password'
                     {...register('password', {required: true})}
                      />
+                      {errors.password?.type === "required" && (
+          <span className="block mt-2 text-xs text-red-500">Password is required</span>
+        )}
+        {error && (
+              <span className="block mt-2 text-xs text-red-500">{error}</span>
+            )}
 
             </div>
             <Button type='submit' children='Signup' className='w-full'/>

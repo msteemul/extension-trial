@@ -10,4 +10,5 @@ export interface SignupFormProps {
     name:string;
     email:string;
     password:string;
+    error: string;
 }
