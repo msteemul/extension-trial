@@ -9,8 +9,10 @@ function App() {
     <>
     <MemoryRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path='/' element={<Signup />} />
+
+      <Route path="/login" element={<Login />} />
+      
+      <Route path="/" element={<Signup />} />
       </Routes>
 
     </MemoryRouter>

@@ -72,6 +72,7 @@ const Signup:React.FC = () => {
             <Button type='submit' children='Signup' className='w-full'/>
 
          </form>
+         <p className='text-white'>Already have an account? <a href='#'>Login</a></p>
          </div>
          </div>
         </>

@@ -4,7 +4,7 @@ import { LoginFormProps } from '../../types';
 import { useForm } from 'react-hook-form';
 
 
-const Login:React.FC = () => {
+export const Login = () => {
     const {
         register,
         handleSubmit,
